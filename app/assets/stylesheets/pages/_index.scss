@@ -1,2 +1,13 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.expense-reports-show {
+  padding: 10px;
+}
+
+.expense-reports-index-table {
+  td {
+    padding: 10px;
+    border: 1px dashed lightseagreen;
+  }
+}
