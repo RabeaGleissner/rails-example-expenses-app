@@ -25,6 +25,10 @@ class ExpenseReportPolicy < ApplicationPolicy
     true
   end
 
+  def approve?
+    @user.roles.include?("Approver")
+  end
+
   def edit?
     update?
   end

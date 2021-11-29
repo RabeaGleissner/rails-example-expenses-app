@@ -70,6 +70,7 @@ class ExpenseReportsController < ApplicationController
 
   def approve
     @expense_report = ExpenseReport.find(params[:expense_report_id])
+    authorize @expense_report
     @expense_report[:approved] = true
     @expense_report.save
     respond_to do |format|
