@@ -18,25 +18,30 @@ class ExpenseReportsController < ApplicationController
       end
     else
       @expense_reports = ExpenseReport.all
+    # @expense_reports = policy_scope(ExpenseReport)
     end
   end
 
   # GET /expense_reports/1 or /expense_reports/1.json
   def show
+    authorize @expense_report
   end
 
   # GET /expense_reports/new
   def new
     @expense_report = ExpenseReport.new
+    authorize @expense_report
   end
 
   # GET /expense_reports/1/edit
   def edit
+    authorize @expense_report
   end
 
   # POST /expense_reports or /expense_reports.json
   def create
     @expense_report = ExpenseReport.new(expense_report_params)
+    authorize @expense_report
 
     respond_to do |format|
       if @expense_report.save
@@ -53,6 +58,7 @@ class ExpenseReportsController < ApplicationController
   def update
     respond_to do |format|
       if @expense_report.update(expense_report_params)
+        authorize @expense_report
         format.html { redirect_to @expense_report, notice: "Expense report was successfully updated." }
         format.json { render :show, status: :ok, location: @expense_report }
       else
