@@ -62,6 +62,15 @@ class ExpenseReportsController < ApplicationController
     end
   end
 
+  def approve
+    @expense_report = ExpenseReport.find(params[:expense_report_id])
+    @expense_report[:approved] = true
+    @expense_report.save
+    respond_to do |format|
+      format.html { redirect_to @expense_report, notice: "Expense report was approved!!!!!" }
+    end
+  end
+
   # DELETE /expense_reports/1 or /expense_reports/1.json
   def destroy
     @expense_report.destroy
