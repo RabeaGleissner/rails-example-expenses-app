@@ -3,7 +3,11 @@ class ExpenseReportsController < ApplicationController
 
   # GET /expense_reports or /expense_reports.json
   def index
-    @expense_reports = ExpenseReport.all
+    if params[:query].present?
+      @expense_reports = ExpenseReport.where(title: params[:query])
+    else
+      @expense_reports = ExpenseReport.all
+    end
   end
 
   # GET /expense_reports/1 or /expense_reports/1.json
