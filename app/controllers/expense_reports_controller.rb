@@ -4,7 +4,18 @@ class ExpenseReportsController < ApplicationController
   # GET /expense_reports or /expense_reports.json
   def index
     if params[:query].present?
+      # This one uses the search method defined in the ExpenseReport controller
       @expense_reports = ExpenseReport.search_reports(params[:query])
+
+
+      # This search uses the multisearch functionality which searches through the User and ExpenseReport models (see the results in the console)
+      results = PgSearch.multisearch(params[:query])
+      puts "***********************************"
+      puts "We got #{results.length} results!"
+      results.each do |result|
+        puts "EACH RESULT"
+        puts result.searchable
+      end
     else
       @expense_reports = ExpenseReport.all
     end
