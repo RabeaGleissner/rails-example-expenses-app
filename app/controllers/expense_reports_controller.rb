@@ -4,7 +4,7 @@ class ExpenseReportsController < ApplicationController
   # GET /expense_reports or /expense_reports.json
   def index
     if params[:query].present?
-      @expense_reports = ExpenseReport.where(title: params[:query])
+      @expense_reports = ExpenseReport.search_reports(params[:query])
     else
       @expense_reports = ExpenseReport.all
     end
