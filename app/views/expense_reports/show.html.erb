@@ -18,15 +18,17 @@
 
   <p>
     <strong>Approved:</strong>
-    <%= @expense_report.approved %>
+    <%= @expense_report.approved ? "YES" : "NO"%>
   </p>
 
-  <% if policy(@expense_report).approve? %>
-    <div>
+  <% if policy(@expense_report).approve? && !@expense_report.approved? %>
+    <div class="btn btn-info">
       <%= link_to 'APPROVE', expense_report_approve_path(@expense_report) %>
     </div>
   <% end %>
 
-  <%= link_to 'Edit', edit_expense_report_path(@expense_report) %> |
-  <%= link_to 'Back', expense_reports_path %>
+  <div class="mt-3">
+    <%= link_to 'Edit', edit_expense_report_path(@expense_report) %> |
+    <%= link_to 'Back', expense_reports_path %>
+  </div>
 </div>
