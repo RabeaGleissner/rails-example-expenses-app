@@ -5,7 +5,7 @@ class ExpenseReportsController < ApplicationController
   def index
     if params[:query].present?
       # This one uses the search method defined in the ExpenseReport controller
-      @expense_reports = ExpenseReport.search_reports(params[:query])
+      @expense_reports = policy_scope(ExpenseReport).search_reports(params[:query])
 
 
       # This search uses the multisearch functionality which searches through the User and ExpenseReport models (see the results in the console)
@@ -17,8 +17,8 @@ class ExpenseReportsController < ApplicationController
         puts result.searchable
       end
     else
-      @expense_reports = ExpenseReport.all
-    # @expense_reports = policy_scope(ExpenseReport)
+      # @expense_reports = ExpenseReport.all
+    @expense_reports = policy_scope(ExpenseReport)
     end
   end
 
