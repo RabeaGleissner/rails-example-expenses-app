@@ -73,6 +73,10 @@ class ExpenseReportsController < ApplicationController
     authorize @expense_report
     @expense_report[:approved] = true
     @expense_report.save
+    ReportApprovalChannel.broadcast_to(
+      "report_approvals",
+      "APPROVED: #{@expense_report.id}"
+    )
     respond_to do |format|
       format.html { redirect_to @expense_report, notice: "Expense report was approved!!!!!" }
     end
