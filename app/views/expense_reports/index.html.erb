@@ -31,7 +31,7 @@
         <td><%= expense_report.title %></td>
         <td><%= expense_report.date %></td>
         <td><%= expense_report.items %></td>
-        <td><%= expense_report.approved ? "YES" : "NO" %></td>
+        <td class="approval-container" data-expense-report-approval-id="<%= expense_report.id %>"><%= expense_report.approved ? "YES" : "NO" %></td>
         <td><%= link_to 'Show', expense_report %></td>
         <td><%= link_to 'Edit', edit_expense_report_path(expense_report) %></td>
         <td><%= link_to 'Destroy', expense_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
