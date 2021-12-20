@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.3'
 
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 gem 'pg_search', '~> 2.3.5'
 gem 'pundit'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
